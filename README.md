@@ -1,8 +1,9 @@
 # google_clone
 
 A new Flutter project.
+# Run
 
-# In order to run your application, type:
+In order to run your application, type:
 
 <!--START_SECTION:waka-->
 ```text
