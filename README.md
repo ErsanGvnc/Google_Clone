@@ -2,7 +2,7 @@
 
 A new Flutter project.
 
-In order to run your application, type:
+# In order to run your application, type:
 
 <!--START_SECTION:waka-->
 ```text
