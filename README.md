@@ -1,6 +1,31 @@
 # google_clone
 
 A new Flutter project.
+# Run
+
+In order to run your application, type:
+
+<!--START_SECTION:waka-->
+```text
+  $ cd google_clone
+```
+<!--END_SECTION:waka-->
+
+
+<!--START_SECTION:waka-->
+```text
+  $ flutter run
+```
+<!--END_SECTION:waka-->
+
+Your application code is in google_clone\lib\main.dart.
+
+# Assets/Videos
+
+![google_clone](https://user-images.githubusercontent.com/57798484/143591932-b07b77fa-3222-4757-a822-5b8d2c243042.PNG)
+
+
+https://user-images.githubusercontent.com/57798484/143587662-de609f00-4c62-4e52-813c-52f81dd24b96.mp4
 
 ## Getting Started
 
