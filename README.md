@@ -2,6 +2,12 @@
 
 A new Flutter project.
 
+<!--START_SECTION:waka-->
+```text
+No Activity tracked this Week
+```
+<!--END_SECTION:waka-->
+
 ![google_clone](https://user-images.githubusercontent.com/57798484/143591932-b07b77fa-3222-4757-a822-5b8d2c243042.PNG)
 
 
