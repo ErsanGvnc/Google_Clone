@@ -4,7 +4,12 @@ A new Flutter project.
 
 <!--START_SECTION:waka-->
 ```text
-No Activity tracked this Week
+In order to run your application, type:
+
+  $ cd sil
+  $ flutter run
+
+Your application code is in sil\lib\main.dart.
 ```
 <!--END_SECTION:waka-->
 
