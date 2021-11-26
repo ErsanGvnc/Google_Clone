@@ -20,6 +20,8 @@ In order to run your application, type:
 
 Your application code is in google_clone\lib\main.dart.
 
+# Assets/Videos
+
 ![google_clone](https://user-images.githubusercontent.com/57798484/143591932-b07b77fa-3222-4757-a822-5b8d2c243042.PNG)
 
 
