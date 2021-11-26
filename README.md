@@ -6,10 +6,10 @@ A new Flutter project.
 ```text
 In order to run your application, type:
 
-  $ cd sil
+  $ cd google_clone
   $ flutter run
 
-Your application code is in sil\lib\main.dart.
+Your application code is in google_clone\lib\main.dart.
 ```
 <!--END_SECTION:waka-->
 
