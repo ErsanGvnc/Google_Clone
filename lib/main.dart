@@ -1,17 +1,44 @@
 // ignore_for_file: avoid_unnecessary_containers, use_key_in_widget_constructors, prefer_const_constructors, prefer_const_literals_to_create_immutables, prefer_const_declarations, avoid_print, unused_element, unused_local_variable
 
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:google_clone/LanguageChangeProvider.dart';
+import 'package:google_clone/generated/l10n.dart';
+import 'package:provider/provider.dart';
+import 'package:window_size/window_size.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  if (Platform.isWindows || Platform.isLinux || Platform.isMacOS) {
+    setWindowTitle('Google');
+    setWindowMinSize(const Size(515, 560));
+    setWindowMaxSize(Size.infinite);
+  }
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: AnaSayfa(),
-      debugShowCheckedModeBanner: false,
+    return ChangeNotifierProvider<LanguageChangeProvider>(
+      create: (context) => LanguageChangeProvider(),
+      child: Builder(
+        builder: (context) => MaterialApp(
+          locale: Provider.of<LanguageChangeProvider>(context, listen: true)
+              .currentLocale,
+          localizationsDelegates: [
+            S.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          supportedLocales: S.delegate.supportedLocales,
+          home: AnaSayfa(),
+          debugShowCheckedModeBanner: false,
+        ),
+      ),
     );
   }
 }
@@ -23,6 +50,7 @@ class AnaSayfa extends StatefulWidget {
 
 bool textunderline = false;
 bool _underline = false;
+bool _turkce = true;
 
 class _AnaSayfaState extends State<AnaSayfa> {
   @override
@@ -81,7 +109,8 @@ class _AnaSayfaState extends State<AnaSayfa> {
                       },
                       onTap: () {},
                       child: Text(
-                        "Görseller",
+                        S.of(context).gorse,
+                        //"Görseller",
                         style: TextStyle(
                           color: Color.fromRGBO(255, 255, 255, 1),
                           fontSize: 14,
@@ -197,7 +226,8 @@ class _AnaSayfaState extends State<AnaSayfa> {
                             ),
                             child: Center(
                               child: Text(
-                                "Google'da Ara",
+                                S.of(context).gog,
+                                //"Google'da Ara",
                                 style: TextStyle(color: Colors.white),
                               ),
                             ),
@@ -220,7 +250,8 @@ class _AnaSayfaState extends State<AnaSayfa> {
                             ),
                             child: Center(
                               child: Text(
-                                "Kendimi Şanslı Hissediyorum",
+                                S.of(context).ken,
+                                //"Kendimi Şanslı Hissediyorum",
                                 style: TextStyle(color: Colors.white),
                               ),
                             ),
@@ -230,11 +261,13 @@ class _AnaSayfaState extends State<AnaSayfa> {
                     ],
                   ),
                   SizedBox(height: 25),
+                  //bura
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        "Google'ı kullanabileceğiniz diğer diller:",
+                        S.of(context).kul,
+                        //"Google'ı kullanabileceğiniz diğer diller:",
                         style: TextStyle(
                           fontSize: 13,
                           fontFamily: "arial",
@@ -242,8 +275,27 @@ class _AnaSayfaState extends State<AnaSayfa> {
                         ),
                       ),
                       TextButton(
-                        onPressed: () {},
-                        child: Text("English"),
+                        onPressed: () {
+                          setState(() {
+                            _turkce = !_turkce;
+                            print(_turkce);
+                          });
+                          if (_turkce == false) {
+                            context
+                                .read<LanguageChangeProvider>()
+                                .changeLocale("en");
+                            print("en");
+                          } else {
+                            context
+                                .read<LanguageChangeProvider>()
+                                .changeLocale("tr");
+                            print("tr");
+                          }
+                        },
+                        child: Text(
+                          S.of(context).turk,
+                          //"English",
+                        ),
                       )
                     ],
                   ),
@@ -286,7 +338,8 @@ class NormalState extends State<Normal> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Text(
-                    "Türkiye",
+                    S.of(context).tur,
+                    //"Türkiye",
                     style: TextStyle(
                       color: Color.fromRGBO(189, 193, 189, 0.80),
                       fontSize: 15,
@@ -321,7 +374,8 @@ class NormalState extends State<Normal> {
                     },
                     onTap: () {},
                     child: Text(
-                      "Hakkında",
+                      S.of(context).hak,
+                      //"Hakkında",
                       style: TextStyle(
                         color: Color.fromRGBO(189, 193, 189, 0.80),
                         fontSize: 14,
@@ -339,7 +393,8 @@ class NormalState extends State<Normal> {
                     },
                     onTap: () {},
                     child: Text(
-                      "Reklam",
+                      S.of(context).rek,
+                      //"Reklam",
                       style: TextStyle(
                         color: Color.fromRGBO(189, 193, 189, 0.80),
                         fontSize: 14,
@@ -357,7 +412,8 @@ class NormalState extends State<Normal> {
                     },
                     onTap: () {},
                     child: Text(
-                      "İşletme",
+                      S.of(context).iss,
+                      //"İşletme",
                       style: TextStyle(
                         color: Color.fromRGBO(189, 193, 189, 0.80),
                         fontSize: 14,
@@ -375,7 +431,8 @@ class NormalState extends State<Normal> {
                     },
                     onTap: () {},
                     child: Text(
-                      "Arama nasıl çalışır?",
+                      S.of(context).ara,
+                      //"Arama nasıl çalışır?",
                       style: TextStyle(
                         color: Color.fromRGBO(189, 193, 189, 0.80),
                         fontSize: 14,
@@ -404,7 +461,8 @@ class NormalState extends State<Normal> {
                           width: 5,
                         ),
                         Text(
-                          "2007'den bugüne karbon nötr",
+                          S.of(context).kar,
+                          //"2007'den bugüne karbon nötr",
                           style: TextStyle(
                             color: Color.fromRGBO(189, 193, 189, 0.80),
                             fontSize: 14,
@@ -425,7 +483,8 @@ class NormalState extends State<Normal> {
                     },
                     onTap: () {},
                     child: Text(
-                      "Gizlilik",
+                      S.of(context).giz,
+                      //"Gizlilik",
                       style: TextStyle(
                         color: Color.fromRGBO(189, 193, 189, 0.80),
                         fontSize: 14,
@@ -443,7 +502,8 @@ class NormalState extends State<Normal> {
                     },
                     onTap: () {},
                     child: Text(
-                      "Şartlar",
+                      S.of(context).sar,
+                      //"Şartlar",
                       style: TextStyle(
                         color: Color.fromRGBO(189, 193, 189, 0.80),
                         fontSize: 14,
@@ -461,7 +521,8 @@ class NormalState extends State<Normal> {
                     },
                     onTap: () {},
                     child: Text(
-                      "Ayarlar",
+                      S.of(context).aya,
+                      //"Ayarlar",
                       style: TextStyle(
                         color: Color.fromRGBO(189, 193, 189, 0.80),
                         fontSize: 14,
@@ -505,7 +566,8 @@ class _OrtaState extends State<Orta> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Text(
-                    "Türkiye",
+                    S.of(context).tur,
+                    //"Türkiye",
                     style: TextStyle(
                       color: Color.fromRGBO(189, 193, 189, 0.80),
                       fontSize: 15,
@@ -553,7 +615,8 @@ class _OrtaState extends State<Orta> {
                               width: 5,
                             ),
                             Text(
-                              "2007'den bugüne karbon nötr",
+                              S.of(context).kar,
+                              //"2007'den bugüne karbon nötr",
                               style: TextStyle(
                                 color: Color.fromRGBO(189, 193, 189, 0.80),
                                 fontSize: 14,
@@ -578,7 +641,8 @@ class _OrtaState extends State<Orta> {
                         },
                         onTap: () {},
                         child: Text(
-                          "Hakkında",
+                          S.of(context).hak,
+                          //"Hakkında",
                           style: TextStyle(
                             color: Color.fromRGBO(189, 193, 189, 0.80),
                             fontSize: 14,
@@ -596,7 +660,8 @@ class _OrtaState extends State<Orta> {
                         },
                         onTap: () {},
                         child: Text(
-                          "Reklam",
+                          S.of(context).rek,
+                          //"Reklam",
                           style: TextStyle(
                             color: Color.fromRGBO(189, 193, 189, 0.80),
                             fontSize: 14,
@@ -614,7 +679,8 @@ class _OrtaState extends State<Orta> {
                         },
                         onTap: () {},
                         child: Text(
-                          "İşletme",
+                          S.of(context).iss,
+                          //"İşletme",
                           style: TextStyle(
                             color: Color.fromRGBO(189, 193, 189, 0.80),
                             fontSize: 14,
@@ -632,7 +698,8 @@ class _OrtaState extends State<Orta> {
                         },
                         onTap: () {},
                         child: Text(
-                          "Arama nasıl çalışır?",
+                          S.of(context).ara,
+                          //"Arama nasıl çalışır?",
                           style: TextStyle(
                             color: Color.fromRGBO(189, 193, 189, 0.80),
                             fontSize: 14,
@@ -651,7 +718,8 @@ class _OrtaState extends State<Orta> {
                         },
                         onTap: () {},
                         child: Text(
-                          "Gizlilik",
+                          S.of(context).giz,
+                          //"Gizlilik",
                           style: TextStyle(
                             color: Color.fromRGBO(189, 193, 189, 0.80),
                             fontSize: 14,
@@ -669,7 +737,8 @@ class _OrtaState extends State<Orta> {
                         },
                         onTap: () {},
                         child: Text(
-                          "Şartlar",
+                          S.of(context).sar,
+                          //"Şartlar",
                           style: TextStyle(
                             color: Color.fromRGBO(189, 193, 189, 0.80),
                             fontSize: 14,
@@ -687,7 +756,8 @@ class _OrtaState extends State<Orta> {
                         },
                         onTap: () {},
                         child: Text(
-                          "Ayarlar",
+                          S.of(context).aya,
+                          //"Ayarlar",
                           style: TextStyle(
                             color: Color.fromRGBO(189, 193, 189, 0.80),
                             fontSize: 14,
@@ -733,7 +803,8 @@ class _KucukState extends State<Kucuk> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Text(
-                    "Türkiye",
+                    S.of(context).tur,
+                    //"Türkiye",
                     style: TextStyle(
                       color: Color.fromRGBO(189, 193, 189, 0.80),
                       fontSize: 15,
@@ -781,7 +852,8 @@ class _KucukState extends State<Kucuk> {
                               width: 5,
                             ),
                             Text(
-                              "2007'den bugüne karbon nötr",
+                              S.of(context).kar,
+                              //"2007'den bugüne karbon nötr",
                               style: TextStyle(
                                 color: Color.fromRGBO(189, 193, 189, 0.80),
                                 fontSize: 14,
@@ -808,7 +880,8 @@ class _KucukState extends State<Kucuk> {
                             },
                             onTap: () {},
                             child: Text(
-                              "Hakkında",
+                              S.of(context).hak,
+                              //"Hakkında",
                               style: TextStyle(
                                 color: Color.fromRGBO(189, 193, 189, 0.80),
                                 fontSize: 14,
@@ -826,7 +899,8 @@ class _KucukState extends State<Kucuk> {
                             },
                             onTap: () {},
                             child: Text(
-                              "Reklam",
+                              S.of(context).rek,
+                              //"Reklam",
                               style: TextStyle(
                                 color: Color.fromRGBO(189, 193, 189, 0.80),
                                 fontSize: 14,
@@ -844,7 +918,8 @@ class _KucukState extends State<Kucuk> {
                             },
                             onTap: () {},
                             child: Text(
-                              "İşletme",
+                              S.of(context).iss,
+                              //"İşletme",
                               style: TextStyle(
                                 color: Color.fromRGBO(189, 193, 189, 0.80),
                                 fontSize: 14,
@@ -862,7 +937,8 @@ class _KucukState extends State<Kucuk> {
                             },
                             onTap: () {},
                             child: Text(
-                              "Arama nasıl çalışır?",
+                              S.of(context).ara,
+                              //"Arama nasıl çalışır?",
                               style: TextStyle(
                                 color: Color.fromRGBO(189, 193, 189, 0.80),
                                 fontSize: 14,
@@ -885,7 +961,8 @@ class _KucukState extends State<Kucuk> {
                             },
                             onTap: () {},
                             child: Text(
-                              "Gizlilik",
+                              S.of(context).giz,
+                              //"Gizlilik",
                               style: TextStyle(
                                 color: Color.fromRGBO(189, 193, 189, 0.80),
                                 fontSize: 14,
@@ -903,7 +980,8 @@ class _KucukState extends State<Kucuk> {
                             },
                             onTap: () {},
                             child: Text(
-                              "Şartlar",
+                              S.of(context).sar,
+                              //"Şartlar",
                               style: TextStyle(
                                 color: Color.fromRGBO(189, 193, 189, 0.80),
                                 fontSize: 14,
@@ -921,7 +999,8 @@ class _KucukState extends State<Kucuk> {
                             },
                             onTap: () {},
                             child: Text(
-                              "Ayarlar",
+                              S.of(context).aya,
+                              //"Ayarlar",
                               style: TextStyle(
                                 color: Color.fromRGBO(189, 193, 189, 0.80),
                                 fontSize: 14,
