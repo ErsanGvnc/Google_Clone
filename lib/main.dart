@@ -10,12 +10,14 @@ import 'package:provider/provider.dart';
 import 'package:window_size/window_size.dart';
 
 void main() {
-  WidgetsFlutterBinding.ensureInitialized();
-  if (Platform.isWindows || Platform.isLinux || Platform.isMacOS) {
-    setWindowTitle('Google');
-    setWindowMinSize(const Size(515, 560));
-    setWindowMaxSize(Size.infinite);
-  }
+  // web de çalıştırmak için alttaki satır ve "if" i yorum satırına alın.
+
+  // WidgetsFlutterBinding.ensureInitialized();
+  // if (Platform.isWindows || Platform.isLinux || Platform.isMacOS) {
+  //   setWindowTitle('Google');
+  //   setWindowMinSize(const Size(515, 560));
+  //   setWindowMaxSize(Size.infinite);
+  // }
   runApp(MyApp());
 }
 
