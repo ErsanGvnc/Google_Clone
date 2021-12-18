@@ -22,10 +22,21 @@ Your application code is in google_clone\lib\main.dart.
 
 # Assets/Videos
 
+<p float="left">
+  <img src="https://media.giphy.com/media/kDwXrw54XWr3xoudmg/giphy.gif" width="400"/>
+  <img src="https://media.giphy.com/media/gX5in3AyJzi1oECdVX/giphy.gif" width="400"/>
+</p>
+
 ![google_clone](https://user-images.githubusercontent.com/57798484/143591932-b07b77fa-3222-4757-a822-5b8d2c243042.PNG)
+![google_en](https://user-images.githubusercontent.com/57798484/146637123-a249af50-8f4b-4c6a-b780-e66fb7916c00.jpg)
 
 
-https://user-images.githubusercontent.com/57798484/143587662-de609f00-4c62-4e52-813c-52f81dd24b96.mp4
+
+
+https://user-images.githubusercontent.com/57798484/146637149-bcc5e137-1b14-4534-91a7-6a8baa8c8734.mp4
+
+
+
 
 ## Getting Started
 
